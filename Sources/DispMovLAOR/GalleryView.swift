@@ -2,18 +2,22 @@ import SwiftUI
 
 struct GalleryView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Galería Horizontal")
-                .font(.largeTitle)
-                .bold()
-                .padding(.leading)
+        VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Explora el Mundo")
+                    .font(.system(size: 30, weight: .black, design: .rounded))
+                Text("Mis destinos favoritos para 2025")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .padding(.horizontal)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 15) {
-                    CardView(imageName: "mountain.2.fill", title: "Montañas", author: "Naturaleza", description: "Una vista hermosa de las montañas nevadas.")
-                    CardView(imageName: "sunset.fill", title: "Atardecer", author: "Cielo", description: "Colores vibrantes al final del día.")
-                    CardView(imageName: "beach.umbrella.fill", title: "Playa", author: "Verano", description: "Relajación total bajo el sol costero.")
-                    CardView(imageName: "leaf.fill", title: "Bosque", author: "Bio", description: "El aire puro de la naturaleza virgen.")
+                HStack(spacing: 20) {
+                    CardView(imageName: "map.fill", title: "Tokio", author: "Aventura Urbana", description: "Luces de neón y cultura milenaria en cada esquina.")
+                    CardView(imageName: "sun.max.fill", title: "Bali", author: "Relax Tropical", description: "Playas de arena blanca y templos sagrados.")
+                    CardView(imageName: "snow", title: "Suiza", author: "Alpes", description: "Paisajes de invierno y los mejores chocolates.")
+                    CardView(imageName: "leaf.fill", title: "Amazonas", author: "Eco-Aventura", description: "La selva más grande del mundo te espera.")
                 }
                 .padding(.horizontal)
             }
@@ -21,6 +25,7 @@ struct GalleryView: View {
             Spacer()
         }
         .padding(.top)
+        .background(Color(.systemGroupedBackground))
     }
 }
 

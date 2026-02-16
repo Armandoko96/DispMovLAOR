@@ -2,64 +2,79 @@ import SwiftUI
 
 struct ButtonStylesView: View {
     var body: some View {
-        VStack(spacing: 30) {
-            Text("Estilos de Botones")
-                .font(.largeTitle)
-                .bold()
-            
-            // Botón 1: Solid color con bordes (doble padding + overlay)
-            Button("Botón 1") {
-                print("Click en Botón 1")
+        ScrollView {
+            VStack(spacing: 40) {
+                VStack(spacing: 10) {
+                    Text("Interactive UI")
+                        .font(.system(size: 34, weight: .heavy))
+                    Text("Experimentando con ButtonStyles")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                // Botón 1: Diseño "Outline" Refinado (Padding doble + stroke)
+                Button(action: { print("Acción 1") }) {
+                    Text("BOTÓN OUTLINE")
+                        .font(.system(size: 14, weight: .bold))
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 24)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.primary, lineWidth: 2)
+                        )
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                // Botón 2: Label con estilo Premium
+                Button(action: { print("Borrando...") }) {
+                    Label("ELIMINAR REGISTRO", systemImage: "trash.slash.fill")
+                        .font(.system(size: 14, weight: .black))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.red.opacity(0.1))
+                        .foregroundColor(.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                }
+                .padding(.horizontal)
+                
+                // Botones 3 y 4: Gradientes Neo-Brutalist
+                VStack(spacing: 15) {
+                    Button("SUSCRIBIRSE AHORA") {
+                        print("Suscrito")
+                    }
+                    .buttonStyle(ModernGradientButtonStyle(colors: [.indigo, .purple]))
+                    
+                    Button("EXPLORAR MÁS") {
+                        print("Explorando")
+                    }
+                    .buttonStyle(ModernGradientButtonStyle(colors: [.teal, .green]))
+                }
+                .padding(.horizontal)
+                
+                Spacer()
             }
-            .foregroundColor(.blue)
             .padding()
-            .padding(.horizontal)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.blue, lineWidth: 2)
-            )
-            
-            // Botón 2: Label con icono borrar
-            Button(role: .destructive) {
-                print("Elemento borrado")
-            } label: {
-                Label("Borrar", systemImage: "trash.fill")
-            }
-            .buttonStyle(.borderedProminent)
-            
-            // Botón 3: Gradiente usando ButtonStyle personalizado
-            Button("Botón Gradiente 1") {
-                print("Click en Gradiente 1")
-            }
-            .buttonStyle(GradientButtonStyle(colors: [.orange, .red]))
-            
-            // Botón 4: Gradiente usando ButtonStyle personalizado
-            Button("Botón Gradiente 2") {
-                print("Click en Gradiente 2")
-            }
-            .buttonStyle(GradientButtonStyle(colors: [.purple, .blue]))
-            
-            Spacer()
         }
-        .padding()
     }
 }
 
-// Estilo de botón reutilizable con gradiente
-struct GradientButtonStyle: ButtonStyle {
+// Estilo de botón moderno y propio
+struct ModernGradientButtonStyle: ButtonStyle {
     let colors: [Color]
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .fontWeight(.bold)
+            .font(.system(size: 16, weight: .black))
             .foregroundColor(.white)
-            .padding()
+            .padding(.vertical, 18)
             .frame(maxWidth: .infinity)
             .background(
-                LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
+                LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
             )
-            .cornerRadius(12)
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(color: colors.first!.opacity(0.3), radius: 10, x: 0, y: 10)
+            .scaleEffect(configuration.isPressed ? 0.92 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 

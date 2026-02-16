@@ -3,76 +3,96 @@ import SwiftUI
 struct ProductListView: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
-                Text("Catálogo de Comida")
-                    .font(.largeTitle)
-                    .bold()
-                
-                // Primer renglón: 2 productos
-                HStack(spacing: 15) {
-                    ProductItemView(imageName: "fork.knife", title: "Pizza", price: "20$", bgColor: .orange, textColor: .white)
-                    ProductItemView(imageName: "cup.and.saucer.fill", title: "Café", price: "15$", bgColor: .brown, textColor: .white)
+            VStack(spacing: 25) {
+                VStack(alignment: .leading) {
+                    Text("Tech & Gaming")
+                        .font(.system(size: 34, weight: .heavy, design: .monospaced))
+                    Text("Mejora tu workstation")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
                 
-                // Segundo renglón: Banner ZStack (Tamaño doble)
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(LinearGradient(colors: [.red, .pink], startPoint: .leading, endPoint: .trailing))
-                        .frame(height: 120)
-                    
-                    VStack {
-                        Text("COMBO ESPECIAL")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                        Text("¡Ahorra un 20% hoy!")
-                            .font(.subheadline)
-                            .foregroundColor(.white.opacity(0.9))
-                        Text("12$")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.white)
-                    }
+                // Primer renglón: 2 productos tech
+                HStack(spacing: 15) {
+                    TechProductView(icon: "keyboard.fill", name: "Mech Keyboard", price: "$120", color: .purple)
+                    TechProductView(icon: "mouse.fill", name: "Pro Mouse", price: "$75", color: .cyan)
                 }
                 .padding(.horizontal)
                 
-                // Tercer renglón: Mas productos
-                HStack(spacing: 15) {
-                    ProductItemView(imageName: "burger", title: "Burger", price: "18$", bgColor: .blue, textColor: .white)
-                    ProductItemView(imageName: "icecream.fill", title: "Postre", price: "10$", bgColor: .purple, textColor: .white)
+                // Segundo renglón: Banner ZStack "Pro"
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color.black)
+                    
+                    // Efecto de brillo de borde (propio)
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(LinearGradient(colors: [.purple, .blue, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
+                    
+                    VStack(spacing: 10) {
+                        Text("BUNDLE GAMER")
+                            .font(.caption)
+                            .bold()
+                            .tracking(4)
+                            .foregroundColor(.cyan)
+                        
+                        Text("All-in-One Pack")
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(.white)
+                        
+                        Text("$199.99")
+                            .font(.largeTitle)
+                            .fontWeight(.black)
+                            .foregroundColor(.white)
+                    }
                 }
+                .frame(height: 160)
+                .padding(.horizontal)
+                
+                // Tercer renglón: Mas tech
+                HStack(spacing: 15) {
+                    TechProductView(icon: "headphones", name: "Studio Pro", price: "$250", color: .orange)
+                    TechProductView(icon: "display", name: "4K Monitor", price: "$499", color: .blue)
+                }
+                .padding(.horizontal)
             }
-            .padding()
+            .padding(.vertical)
         }
+        .background(Color(.systemGroupedBackground))
     }
 }
 
-// Subview parametrizada
-struct ProductItemView: View {
-    let imageName: String
-    let title: String
+// Subview personalizada
+struct TechProductView: View {
+    let icon: String
+    let name: String
     let price: String
-    let bgColor: Color
-    let textColor: Color
+    let color: Color
     
     var body: some View {
-        VStack {
-            Image(systemName: imageName)
-                .font(.system(size: 40))
-                .frame(width: 80, height: 80)
-                .background(Color.white.opacity(0.3))
-                .clipShape(Circle())
+        VStack(alignment: .leading, spacing: 12) {
+            Image(systemName: icon)
+                .font(.system(size: 30))
+                .foregroundColor(.white)
+                .frame(width: 60, height: 60)
+                .background(color.gradient)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
             
-            Text(title)
-                .font(.headline)
-            Text(price)
-                .font(.subheadline)
-                .bold()
+            VStack(alignment: .leading, spacing: 4) {
+                Text(name)
+                    .font(.system(size: 14, weight: .bold))
+                Text(price)
+                    .font(.system(size: 16, weight: .black))
+                    .foregroundColor(color)
+            }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(bgColor)
-        .foregroundColor(textColor)
-        .cornerRadius(15)
+        .background(Color(.secondarySystemGroupedBackground))
+        .cornerRadius(20)
+        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }
 

@@ -7,33 +7,49 @@ struct CardView: View {
     let description: String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Image(systemName: imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 200, height: 150)
-                .clipped()
+        VStack(alignment: .leading, spacing: 0) {
+            ZStack(alignment: .topTrailing) {
+                Image(systemName: imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 240, height: 180)
+                    .background(Color.indigo.opacity(0.1))
+                    .clipped()
+                
+                // Badge de "Featured" (toque personal)
+                Text("NEW")
+                    .font(.system(size: 10, weight: .bold))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                    .padding(10)
+            }
             
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(title)
-                    .font(.headline)
-                Text("Autor: \(author)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .font(.system(size: 18, weight: .bold))
+                
+                HStack {
+                    Image(systemName: "person.circle")
+                        .font(.caption)
+                    Text(author)
+                        .font(.caption)
+                }
+                .foregroundColor(.secondary)
+                
                 Text(description)
                     .font(.caption2)
+                    .foregroundColor(.secondary)
                     .lineLimit(2)
+                    .padding(.top, 4)
             }
-            .padding()
+            .padding(16)
         }
-        .frame(width: 200)
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-        )
-        .shadow(radius: 5)
-        .padding(.vertical, 10)
+        .frame(width: 240)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .padding(.vertical, 15)
     }
 }

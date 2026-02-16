@@ -2,35 +2,79 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        VStack(spacing: 20) {
-            // Imagen circular (usando símbolo de sistema como placeholder)
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 150, height: 150)
-                .foregroundColor(.blue)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 7)
+        ZStack {
+            // Fondo con gradiente sutil
+            LinearGradient(colors: [Color.indigo.opacity(0.1), Color.teal.opacity(0.1)], 
+                           startPoint: .topLeading, 
+                           endPoint: .bottomTrailing)
+                .ignoresSafeArea()
             
-            VStack(spacing: 8) {
-                Text("Jorge Moya")
-                    .font(.title)
-                    .fontWeight(.bold)
+            VStack(spacing: 25) {
+                // Imagen circular con estilo propio
+                Image(systemName: "person.crop.square.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 140, height: 140)
+                    .foregroundStyle(.indigo.gradient)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .shadow(color: .indigo.opacity(0.3), radius: 10, x: 0, y: 5)
                 
-                Text("Ing. en Electrónica y Electricidad")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
+                VStack(spacing: 10) {
+                    Text("Jorge Moya")
+                        .font(.system(size: 32, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    
+                    Text("Ingeniería en Electrónica y Electricidad")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    HStack {
+                        Image(systemName: "academicons.graduationcap.fill")
+                        Text("5to Semestre")
+                    }
+                    .font(.footnote)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                    .background(.indigo.opacity(0.1))
+                    .clipShape(Capsule())
+                }
                 
-                Text("Semestre: 5")
-                    .font(.subheadline)
-                    .padding(.top, 4)
+                Spacer()
+                
+                // Un pequeño detalle extra de diseño "propio"
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Habilidades")
+                        .font(.caption)
+                        .bold()
+                        .foregroundColor(.secondary)
+                    HStack {
+                        TagView(text: "SwiftUI", color: .blue)
+                        TagView(text: "iOS", color: .indigo)
+                        TagView(text: "Git", color: .orange)
+                    }
+                }
+                .padding(.bottom, 40)
             }
-            
-            Spacer()
+            .padding()
         }
-        .padding()
-        .navigationTitle("Perfil")
+        .navigationTitle("Mi Perfil")
+    }
+}
+
+struct TagView: View {
+    let text: String
+    let color: Color
+    var body: some View {
+        Text(text)
+            .font(.system(size: 10, weight: .bold))
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(color.opacity(0.2))
+            .foregroundColor(color)
+            .clipShape(Capsule())
     }
 }
 

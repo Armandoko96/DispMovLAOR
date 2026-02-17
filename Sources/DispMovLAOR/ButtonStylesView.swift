@@ -70,7 +70,7 @@ struct ModernGradientButtonStyle: ButtonStyle {
             .padding(.vertical, 18)
             .frame(maxWidth: .infinity)
             .background(
-                LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
             )
             .cornerRadius(20)
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)

@@ -6,7 +6,8 @@ struct ProductListView: View {
             VStack(spacing: 25) {
                 VStack(alignment: .leading) {
                     Text("Tech & Gaming")
-                        .font(.system(size: 34, weight: .heavy, design: .monospaced))
+                        .font(.title)
+                        .bold()
                     Text("Mejora tu workstation")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -26,15 +27,10 @@ struct ProductListView: View {
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color.black)
                     
-                    // Efecto de brillo de borde (propio)
-                    RoundedRectangle(cornerRadius: 25)
-                        .stroke(LinearGradient(colors: [.purple, .blue, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
-                    
                     VStack(spacing: 10) {
                         Text("BUNDLE GAMER")
                             .font(.caption)
                             .bold()
-                            .tracking(4)
                             .foregroundColor(.cyan)
                         
                         Text("All-in-One Pack")
@@ -44,7 +40,7 @@ struct ProductListView: View {
                         
                         Text("$199.99")
                             .font(.largeTitle)
-                            .fontWeight(.black)
+                            .bold()
                             .foregroundColor(.white)
                     }
                 }
@@ -60,7 +56,7 @@ struct ProductListView: View {
             }
             .padding(.vertical)
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color.gray.opacity(0.1))
     }
 }
 
@@ -77,22 +73,21 @@ struct TechProductView: View {
                 .font(.system(size: 30))
                 .foregroundColor(.white)
                 .frame(width: 60, height: 60)
-                .background(color.gradient)
+                .background(color)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(name)
                     .font(.system(size: 14, weight: .bold))
                 Text(price)
-                    .font(.system(size: 16, weight: .black))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(color)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Color.white)
         .cornerRadius(20)
-        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }
 

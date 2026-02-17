@@ -6,7 +6,8 @@ struct ButtonStylesView: View {
             VStack(spacing: 40) {
                 VStack(spacing: 10) {
                     Text("Interactive UI")
-                        .font(.system(size: 34, weight: .heavy))
+                        .font(.title)
+                        .bold()
                     Text("Experimentando con ButtonStyles")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -42,12 +43,12 @@ struct ButtonStylesView: View {
                     Button("SUSCRIBIRSE AHORA") {
                         print("Suscrito")
                     }
-                    .buttonStyle(ModernGradientButtonStyle(colors: [.indigo, .purple]))
+                    .buttonStyle(ModernGradientButtonStyle(colors: [.blue, .purple]))
                     
                     Button("EXPLORAR MÁS") {
                         print("Explorando")
                     }
-                    .buttonStyle(ModernGradientButtonStyle(colors: [.teal, .green]))
+                    .buttonStyle(ModernGradientButtonStyle(colors: [.green, .blue]))
                 }
                 .padding(.horizontal)
                 
@@ -64,17 +65,15 @@ struct ModernGradientButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 16, weight: .black))
+            .font(.headline)
             .foregroundColor(.white)
             .padding(.vertical, 18)
             .frame(maxWidth: .infinity)
             .background(
                 LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
             )
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: colors.first!.opacity(0.3), radius: 10, x: 0, y: 10)
-            .scaleEffect(configuration.isPressed ? 0.92 : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
+            .cornerRadius(20)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }
 

@@ -18,11 +18,13 @@ struct CardView: View {
                 
                 // Badge de "Featured" (toque personal)
                 Text("NEW")
-                    .font(.system(size: 10, weight: .bold))
+                    .font(.caption)
+                    .bold()
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(.ultraThinMaterial)
-                    .clipShape(Capsule())
+                    .background(Color.black.opacity(0.5))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                     .padding(10)
             }
             
@@ -47,7 +49,7 @@ struct CardView: View {
             .padding(16)
         }
         .frame(width: 240)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 25))
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
         .padding(.vertical, 15)

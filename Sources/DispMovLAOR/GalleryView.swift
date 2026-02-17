@@ -5,7 +5,8 @@ struct GalleryView: View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 5) {
                 Text("Explora el Mundo")
-                    .font(.system(size: 30, weight: .black, design: .rounded))
+                    .font(.title)
+                    .bold()
                 Text("Mis destinos favoritos para 2025")
                     .font(.subheadline)
                     .foregroundColor(.secondary)

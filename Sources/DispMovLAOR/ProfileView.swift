@@ -3,11 +3,8 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         ZStack {
-            // Fondo con gradiente sutil
-            LinearGradient(colors: [Color.indigo.opacity(0.1), Color.teal.opacity(0.1)], 
-                           startPoint: .topLeading, 
-                           endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            // Fondo con color sólido (más compatible)
+            Color.blue.opacity(0.05).ignoresSafeArea()
             
             VStack(spacing: 25) {
                 // Imagen circular con estilo propio
@@ -15,36 +12,35 @@ struct ProfileView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 140, height: 140)
-                    .foregroundStyle(.indigo.gradient)
+                    .foregroundColor(.blue)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
-                    .shadow(color: .indigo.opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 
                 VStack(spacing: 10) {
                     Text("Jorge Moya")
-                        .font(.system(size: 32, weight: .black, design: .rounded))
-                        .foregroundStyle(.primary)
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
                     
                     Text("Ingeniería en Electrónica y Electricidad")
                         .font(.subheadline)
                         .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
                     HStack {
-                        Image(systemName: "academicons.graduationcap.fill")
+                        Image(systemName: "graduationcap.fill")
                         Text("5to Semestre")
                     }
                     .font(.footnote)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
-                    .background(.indigo.opacity(0.1))
+                    .background(Color.indigo.opacity(0.1))
                     .clipShape(Capsule())
                 }
                 
                 Spacer()
                 
-                // Un pequeño detalle extra de diseño "propio"
+                // Habilidades
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Habilidades")
                         .font(.caption)
@@ -80,7 +76,7 @@ struct TagView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
+        NavigationView {
             ProfileView()
         }
     }

@@ -4,7 +4,7 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             // Fondo con color sólido (más compatible)
-            Color.blue.opacity(0.05).ignoresSafeArea()
+            Color.blue.opacity(0.05).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 25) {
                 // Imagen circular con estilo propio
@@ -34,7 +34,7 @@ struct ProfileView: View {
                     .font(.footnote)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
-                    .background(Color.indigo.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .clipShape(Capsule())
                 }
                 
@@ -48,7 +48,7 @@ struct ProfileView: View {
                         .foregroundColor(.secondary)
                     HStack {
                         TagView(text: "SwiftUI", color: .blue)
-                        TagView(text: "iOS", color: .indigo)
+                        TagView(text: "iOS", color: .blue)
                         TagView(text: "Git", color: .orange)
                     }
                 }

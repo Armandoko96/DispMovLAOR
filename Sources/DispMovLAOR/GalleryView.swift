@@ -26,7 +26,7 @@ struct GalleryView: View {
             Spacer()
         }
         .padding(.top)
-        .background(Color(.systemGroupedBackground))
+        .background(Color.gray.opacity(0.1))
     }
 }
 

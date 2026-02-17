@@ -18,7 +18,7 @@ struct ProductListView: View {
                 // Primer renglón: 2 productos tech
                 HStack(spacing: 15) {
                     TechProductView(icon: "keyboard.fill", name: "Mech Keyboard", price: "$120", color: .purple)
-                    TechProductView(icon: "mouse.fill", name: "Pro Mouse", price: "$75", color: .cyan)
+                    TechProductView(icon: "mouse.fill", name: "Pro Mouse", price: "$75", color: .blue)
                 }
                 .padding(.horizontal)
                 
@@ -31,7 +31,7 @@ struct ProductListView: View {
                         Text("BUNDLE GAMER")
                             .font(.caption)
                             .bold()
-                            .foregroundColor(.cyan)
+                            .foregroundColor(.blue)
                         
                         Text("All-in-One Pack")
                             .font(.title2)

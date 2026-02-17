@@ -78,8 +78,10 @@ struct TagView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        ProfileView()
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            ProfileView()
+        }
     }
 }

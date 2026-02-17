@@ -78,6 +78,8 @@ struct ModernGradientButtonStyle: ButtonStyle {
     }
 }
 
-#Preview {
-    ButtonStylesView()
+struct ButtonStylesView_Previews: PreviewProvider {
+    static var previews: some View {
+        ButtonStylesView()
+    }
 }

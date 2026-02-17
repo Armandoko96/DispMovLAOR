@@ -13,7 +13,7 @@ struct CardView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: 240, height: 180)
-                    .background(Color.indigo.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .clipped()
                 
                 // Badge de "Featured" (toque personal)

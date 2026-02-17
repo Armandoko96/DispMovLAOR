@@ -22,7 +22,6 @@ struct ProfileView: View {
                     
                     Text("Ingeniería en Electrónica y Electricidad")
                         .font(.subheadline)
-                        .fontWeight(.medium)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
